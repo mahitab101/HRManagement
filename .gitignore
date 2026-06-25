@@ -1,0 +1,84 @@
+## .NET Core / Visual Studio
+bin/
+obj/
+out/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio
+.vs/
+*.VC.db
+*.VC.VC.opendb
+
+## Rider / JetBrains
+.idea/
+*.sln.iml
+
+## VS Code
+.vscode/
+
+## NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+## Secrets & local config (CRITICAL)
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json
+!appsettings.json
+!appsettings.Production.json
+*.pfx
+secrets.json
+.env
+
+## EF Core
+*.db
+*.db-shm
+*.db-wal
+
+## OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## Test Results
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+## Publish
+**/Properties/PublishProfiles/*.pubxml
+**/Properties/PublishProfiles/*.pubxml.user
+
+## Node (لو عندك React frontend في نفس الـ repo)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+dist/
+build/
+.env.local
+.env.development.local
+.env.production.local

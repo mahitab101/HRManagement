@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/API/">
+    <Project Path="HRManagement.API/HRManagement.API.csproj" Id="cbf24efe-3974-409b-8ca5-f9e21b0dc1b3" />
+  </Folder>
+  <Folder Name="/src/Core/">
+    <Project Path="HRManagement.Application/HRManagement.Application.csproj" />
+    <Project Path="HRManagement.Domain/HRManagement.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="HRManagement.Infrastructure/HRManagement.Infrastructure.csproj" Id="28e41e47-50d3-4f13-a097-c1b35eb19db7" />
+    <Project Path="HRManagement.Persistence/HRManagement.Persistence.csproj" Id="1552d537-3870-49b3-9d84-627d343cafb2" />
+  </Folder>
+  <Folder Name="/test/" />
+</Solution>

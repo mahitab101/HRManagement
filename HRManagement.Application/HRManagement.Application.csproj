@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Employees\Commands\CreateEmployee\" />
+    <Folder Include="Features\Employees\Commands\DeleteEmployee\" />
+    <Folder Include="Features\Employees\Commands\UpdateEmployee\" />
+    <Folder Include="Features\Employees\Queries\GetEmployeeById\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HRManagement.Domain\HRManagement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
