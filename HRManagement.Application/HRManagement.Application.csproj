@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Employees\Commands\CreateEmployee\" />
     <Folder Include="Features\Employees\Commands\DeleteEmployee\" />
     <Folder Include="Features\Employees\Commands\UpdateEmployee\" />
   </ItemGroup>

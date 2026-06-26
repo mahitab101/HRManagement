@@ -1,4 +1,5 @@
-﻿using HRManagement.Application.Features.Employees.Queries.GetAllEmployees;
+﻿using HRManagement.Application.Features.Employees.Commands.CreateEmployee;
+using HRManagement.Application.Features.Employees.Queries.GetAllEmployees;
 using HRManagement.Application.Features.Employees.Queries.GetEmployeeById;
 using HRManagement.Domain.Entities;
 using System;
@@ -54,6 +55,24 @@ namespace HRManagement.Application.Mappings
         public static List<EmployeeListVm> ToEmployeeListVms(this IEnumerable<Employee> employees)
         {
             return employees.Select(e => e.ToEmployeeListVm()).ToList();
+        }
+        public static Employee ToEntity(this CreateEmployeeCommand command)
+        {
+            return new Employee
+            {
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Email = command.Email,
+                Phone = command.Phone,
+                NationalId = command.NationalId,
+                Gender = command.Gender,
+                DateOfBirth = command.DateOfBirth,
+                HireDate = command.HireDate,
+                Status = command.Status,
+                DepartmentId = command.DepartmentId,
+                PositionId = command.PositionId,
+                BranchId = command.BranchId
+            };
         }
     }
 }
