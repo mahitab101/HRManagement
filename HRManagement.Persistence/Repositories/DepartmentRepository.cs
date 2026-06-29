@@ -21,5 +21,13 @@ namespace HRManagement.Persistence.Repositories
                 .Include(d => d.Manager)
                 .ToListAsync();
         }
+
+        public async Task<Department> GetByIdWithDetailsAsync(Guid id)
+        {
+            return await _dbContext.Departments
+                        .Include(d => d.Employees)
+                        .Include(d => d.Manager)
+                        .FirstOrDefaultAsync(d => d.Id == id);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using HRManagement.Application.Features.Departments.Commands.CreateDepartment;
 using HRManagement.Application.Features.Departments.Queries.GetAllDepartments;
+using HRManagement.Application.Features.Departments.Queries.GetDepartmentById;
 using HRManagement.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,28 @@ namespace HRManagement.Application.Mappings
                 EmployeesCount = department.Employees?.Count ?? 0
             };
 
+        }
+
+        public static DepartmentDetailsVm ToDepartmentDetailsVm(this Department department)
+        {
+            return new DepartmentDetailsVm
+            {
+                Id = department.Id,
+                Name = department.Name,
+                ManagerId = department.ManagerId,
+                ManagerName = department.Manager != null
+                    ? $"{department.Manager.FirstName} {department.Manager.LastName}"
+                    : null,
+                EmployeesCount = department.Employees?.Count ?? 0,
+                Employees = department.Employees?
+                    .Select(e => new EmployeeSummaryDto
+                    {
+                        Id = e.Id,
+                        FirstName = e.FirstName,
+                        LastName = e.LastName,
+                        PositionTitle = e.Position?.Title
+                    }).ToList() ?? new List<EmployeeSummaryDto>()
+            };
         }
     }
 }
