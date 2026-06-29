@@ -7,5 +7,6 @@ namespace HRManagement.Application.Contracts.Persistence
 {
     public interface ILeaveRequestRepository:IBaseRepository<LeaveRequest>
     {
+        Task<IReadOnlyList<LeaveRequest>> GetAllWithDetailsAsync();
     }
 }

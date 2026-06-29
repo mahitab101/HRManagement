@@ -1,13 +1,14 @@
-﻿using HRManagement.Application.Contracts.Persistence;
+﻿using HRManagement.Application.Common;
+using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Application.Mappings;
+using HRManagement.Application.Responses;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HRManagement.Application.Features.Employees.Queries.GetAllEmployees
 {
-    public class GetAllEmployeesQueryHandler : IRequestHandler<GetAllEmployeesQuery, List<EmployeeListVm>>
+    public class GetAllEmployeesQueryHandler : IRequestHandler<GetAllEmployeesQuery, BaseResponse<PaginatedList<EmployeeListVm>>>
     {
         private readonly IEmployeeRepository _employeeRepository;
 
@@ -16,11 +17,15 @@ namespace HRManagement.Application.Features.Employees.Queries.GetAllEmployees
             _employeeRepository = employeeRepository;
         }
 
-        public async Task<List<EmployeeListVm>> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<PaginatedList<EmployeeListVm>>> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
         {
-            var emplyees = await _employeeRepository.GetAllAsync();
-            var response = emplyees.ToEmployeeListVms();
-            return response;
+            var (employees, totalCount) = await _employeeRepository.GetPagedAsync(request.PageNumber, request.PageSize);
+
+            var items = employees.ToEmployeeListVms();
+
+            var paginatedResult = new PaginatedList<EmployeeListVm>(items, totalCount, request.PageNumber, request.PageSize);
+
+            return BaseResponse<PaginatedList<EmployeeListVm>>.SuccessResponse(paginatedResult, "Employees retrieved successfully");
         }
     }
 }

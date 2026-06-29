@@ -19,10 +19,12 @@ namespace HRManagement.API.Controller
         }
 
         [HttpGet]
-        public async Task<ActionResult<EmployeeListVm>> GetAll()
+        [HttpGet]
+        public async Task<ActionResult> GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var employees = await _mediator.Send(new GetAllEmployeesQuery());
-            return Ok(employees);
+            var query = new GetAllEmployeesQuery { PageNumber = pageNumber, PageSize = pageSize };
+            var response = await _mediator.Send(query);
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
