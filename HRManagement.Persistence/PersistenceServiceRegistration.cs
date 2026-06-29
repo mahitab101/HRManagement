@@ -29,6 +29,7 @@ namespace HRManagement.Persistence
             services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IEmployeeTransferHistoryRepository, EmployeeTransferHistoryRepository>();
+            services.AddScoped<IPositionRepository, PositionRepository>();
             return services;
         }
     }

@@ -16,7 +16,7 @@ namespace HRManagement.Persistence.Configurations
 
             builder.HasIndex(b => b.Name).IsUnique();
 
-            builder.HasOne<Employee>()
+            builder.HasOne(b=>b.Manager)
                    .WithMany()
                    .HasForeignKey(b => b.ManagerId)
                    .OnDelete(DeleteBehavior.Restrict);

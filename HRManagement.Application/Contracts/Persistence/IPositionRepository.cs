@@ -7,5 +7,6 @@ namespace HRManagement.Application.Contracts.Persistence
 {
     public interface IPositionRepository : IBaseRepository<Position>
     {
+        Task<IReadOnlyList<Position>> GetAllWithDepartmentAsync();
     }
 }

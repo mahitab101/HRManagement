@@ -10,6 +10,7 @@ namespace HRManagement.Domain.Entities
         public string Name { get; set; }
         public string Location { get; set; }
         public Guid? ManagerId { get; set; }
+        public Employee? Manager { get; set; }
         public ICollection<Employee>? Employees { get; set; }
     }
 }

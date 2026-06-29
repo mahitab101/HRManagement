@@ -23,7 +23,7 @@ namespace HRManagement.Application.Features.Departments.Queries.GetAllDepartment
 
             var response = departments.Select(d=>d.ToDepartmentListVms()).ToList();
 
-            return BaseResponse<List<DepartmentListVm>>.SuccessResponse(response, "Departments retrieved successfully");
+            return BaseResponse<List<DepartmentListVm>>.SuccessResponse(response, "Data retrieved successfully");
         }
     }
 }
