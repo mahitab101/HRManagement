@@ -7,5 +7,6 @@ namespace HRManagement.Application.Contracts.Persistence
 {
     public interface IEmployeeTransferHistoryRepository:IBaseRepository<EmployeeTransferHistory>
     {
+        Task<IReadOnlyList<EmployeeTransferHistory>> GetByEmployeeIdAsync(Guid employeeId);
     }
 }
