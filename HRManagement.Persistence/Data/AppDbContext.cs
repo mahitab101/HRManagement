@@ -1,5 +1,8 @@
 ﻿using HRManagement.Domain.Common;
 using HRManagement.Domain.Entities;
+using HRManagement.Domain.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +11,7 @@ using System.Text;
 
 namespace HRManagement.Persistence.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser,IdentityRole<Guid>,Guid>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -24,6 +27,8 @@ namespace HRManagement.Persistence.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
@@ -34,7 +39,6 @@ namespace HRManagement.Persistence.Data
                 }
             }
 
-            base.OnModelCreating(modelBuilder);
         }
 
         private static LambdaExpression? GetSoftDeleteFilter(Type clrType)
