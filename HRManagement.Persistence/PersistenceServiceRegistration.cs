@@ -1,4 +1,5 @@
-﻿using HRManagement.Application.Contracts.Persistence;
+﻿using HRManagement.Application.Contracts.Identity;
+using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Persistence.Data;
 using HRManagement.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace HRManagement.Persistence
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IEmployeeTransferHistoryRepository, EmployeeTransferHistoryRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }

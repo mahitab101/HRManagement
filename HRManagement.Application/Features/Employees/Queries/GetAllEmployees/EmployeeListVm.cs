@@ -13,7 +13,7 @@ namespace HRManagement.Application.Features.Employees.Queries.GetAllEmployees
         public Gender Gender { get; set; }
         public DateTime HireDate { get; set; }
         public EmployeeStatus Status { get; set; }
-
+        public bool HasAccount { get; set; }
         public Guid DepartmentId { get; set; }
         public string DepartmentName { get; set; }
 

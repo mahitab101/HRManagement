@@ -12,7 +12,8 @@ namespace HRManagement.Application.Features.Employees.Queries.GetEmployeeById
         public Gender Gender { get; set; }
         public DateTime HireDate { get; set; }
         public EmployeeStatus Status { get; set; }
-
+        public string NationalId { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public Guid DepartmentId { get; set; }
         public string DepartmentName { get; set; }
 
