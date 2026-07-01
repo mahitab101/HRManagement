@@ -102,6 +102,25 @@ namespace HRManagement.Infrastructure.Services.Account
 
             return true;
         }
+
+        public async Task<bool> RemoveRoleAsync(Guid userId, string role)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+                throw new KeyNotFoundException("User not found.");
+
+            if (!await _userManager.IsInRoleAsync(user, role))
+                throw new InvalidOperationException($"User does not have the '{role}' role.");
+
+            var result = await _userManager.RemoveFromRoleAsync(user, role);
+            if (!result.Succeeded)
+            {
+                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                throw new InvalidOperationException($"Failed to remove role: {errors}");
+            }
+
+            return true;
+        }
     }
 }
 

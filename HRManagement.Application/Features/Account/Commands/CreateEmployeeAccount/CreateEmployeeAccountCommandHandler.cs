@@ -27,7 +27,7 @@ namespace HRManagement.Application.Features.Account.Commands.CreateEmployeeAccou
             };
 
             var result = await _accountService.CreateEmployeeAccountAsync(dto);
-
+            //TODO:Send email to the employee with his credentials
             var response = new CreateEmployeeAccountCommandResponse
             {
                 Email = result.Email,

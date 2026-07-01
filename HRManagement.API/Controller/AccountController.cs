@@ -1,6 +1,7 @@
 ﻿using HRManagement.Application.Features.Account.Commands.AssignRole;
 using HRManagement.Application.Features.Account.Commands.CreateEmployeeAccount;
 using HRManagement.Application.Features.Account.Commands.Login;
+using HRManagement.Application.Features.Account.Commands.RemoveRole;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -42,5 +43,12 @@ namespace HRManagement.API.Controllers
         }
 
         //TODO: add remove-role endpoint
+        [HttpPost("remove-role")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> RemoveRole(RemoveRoleCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 }
