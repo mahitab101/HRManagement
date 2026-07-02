@@ -1,4 +1,5 @@
-﻿using HRManagement.Domain.Common;
+﻿using HRManagement.Application.Contracts.Identity;
+using HRManagement.Domain.Common;
 using HRManagement.Domain.Entities;
 using HRManagement.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +14,13 @@ namespace HRManagement.Persistence.Data
 {
     public class AppDbContext : IdentityDbContext<ApplicationUser,IdentityRole<Guid>,Guid>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        private readonly ICurrentUserService _currentUserService;
+        public AppDbContext(
+               DbContextOptions<AppDbContext> options,
+               ICurrentUserService currentUserService) : base(options)
+        {
+            _currentUserService = currentUserService;
+        }
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -51,7 +58,7 @@ namespace HRManagement.Persistence.Data
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var currentUserId =  Guid.NewGuid(); // TODO: replace with actual current user
+            var currentUserId = _currentUserService.UserId ?? Guid.Empty; // TODO: replace with actual current user
             var currentTime = DateTime.UtcNow;
 
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
