@@ -23,6 +23,17 @@ namespace HRManagement.API.Controllers
         public async Task<IActionResult> Login(LoginCommand command)
         {
             var result = await _mediator.Send(command);
+
+            if (result.Success && result.Data != null)
+            {
+                Response.Cookies.Append("hr_token", result.Data.Token, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = false,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTimeOffset.UtcNow.AddHours(1)
+                });
+            }
             return Ok(result);
         }
 
@@ -49,6 +60,13 @@ namespace HRManagement.API.Controllers
         {
             var result = await _mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("hr_token");
+            return Ok();
         }
     }
 }

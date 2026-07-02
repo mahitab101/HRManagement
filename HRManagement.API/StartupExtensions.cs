@@ -58,7 +58,8 @@ namespace HRManagement.API
                 {
                     policy.WithOrigins("http://localhost:3001")
                           .AllowAnyHeader()
-                          .AllowAnyMethod();
+                          .AllowAnyMethod()
+                          .AllowCredentials();
                 });
             });
             return builder;

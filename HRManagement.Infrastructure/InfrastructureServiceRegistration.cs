@@ -16,6 +16,8 @@ namespace HRManagement.Infrastructure
         {
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
             return services;
         }
     }
