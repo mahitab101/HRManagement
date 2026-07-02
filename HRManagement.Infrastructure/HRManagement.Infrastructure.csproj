@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HRManagement.Application\HRManagement.Application.csproj" />
-    <ProjectReference Include="..\HRManagement.Domain\HRManagement.Domain.csproj" />
+   
   </ItemGroup>
 
 </Project>
