@@ -8,7 +8,6 @@ namespace HRManagement.Application.Features.LeaveRequests.Commands.UpdateLeaveRe
     public class UpdateLeaveRequestStatusCommand : IRequest<BaseResponse<bool>>
     {
         public Guid Id { get; set; }
-        public Guid ApproverId { get; set; }
         public LeaveStatus Status { get; set; } // Approved or Rejected
     }
 }

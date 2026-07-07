@@ -1,3 +1,4 @@
+using HRManagement.Application.Contracts.Identity;
 using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Application.Responses;
 using MediatR;
@@ -9,10 +10,13 @@ namespace HRManagement.Application.Features.LeaveRequests.Commands.UpdateLeaveRe
     public class UpdateLeaveRequestStatusCommandHandler : IRequestHandler<UpdateLeaveRequestStatusCommand, BaseResponse<bool>>
     {
         private readonly ILeaveRequestRepository _leaveRequestRepository;
+        private readonly ICurrentUserService _currentUserService;
 
-        public UpdateLeaveRequestStatusCommandHandler(ILeaveRequestRepository leaveRequestRepository)
+        public UpdateLeaveRequestStatusCommandHandler(ILeaveRequestRepository leaveRequestRepository,
+            ICurrentUserService currentUserService)
         {
             _leaveRequestRepository = leaveRequestRepository;
+            _currentUserService = currentUserService;
         }
 
         public async Task<BaseResponse<bool>> Handle(UpdateLeaveRequestStatusCommand request, CancellationToken cancellationToken)
@@ -23,7 +27,7 @@ namespace HRManagement.Application.Features.LeaveRequests.Commands.UpdateLeaveRe
                 return BaseResponse<bool>.FailureResponse($"Leave request with Id {request.Id} not found");
 
             leaveRequest.Status = request.Status;
-            leaveRequest.ApproverId = request.ApproverId;
+            leaveRequest.ApproverId = _currentUserService.UserId;
 
             await _leaveRequestRepository.UpdateAsync(leaveRequest);
 
