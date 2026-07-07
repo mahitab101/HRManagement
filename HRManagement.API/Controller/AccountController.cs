@@ -2,6 +2,7 @@
 using HRManagement.Application.Features.Account.Commands.CreateEmployeeAccount;
 using HRManagement.Application.Features.Account.Commands.Login;
 using HRManagement.Application.Features.Account.Commands.RemoveRole;
+using HRManagement.Application.Features.Account.Queries.GetCurrentUser;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -68,5 +69,14 @@ namespace HRManagement.API.Controllers
             Response.Cookies.Delete("hr_token");
             return Ok();
         }
+
+        [HttpGet("me")]
+        [Authorize]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var result = await _mediator.Send(new GetCurrentUserQuery());
+            return Ok(result);
+        }
+
     }
 }
