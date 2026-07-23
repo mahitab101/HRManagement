@@ -1,4 +1,5 @@
-﻿using HRManagement.Application.Contracts.Identity;
+﻿using HRManagement.Application.Common.Constants;
+using HRManagement.Application.Contracts.Identity;
 using HRManagement.Application.Models.Identity;
 using HRManagement.Application.Responses;
 using MediatR;
@@ -31,7 +32,8 @@ namespace HRManagement.Application.Features.Account.Commands.Login
             {
                 Token = result.Token,
                 Email = result.Email,
-                EmployeeId = result.EmployeeId
+                EmployeeId = result.EmployeeId,
+                Roles = result.Roles
             };
 
             return BaseResponse<LoginCommandResponse>.SuccessResponse(response, "Login successful.");

@@ -22,5 +22,14 @@ namespace HRManagement.Persistence.Repositories
 
             return Task.FromResult(employeeIds);
         }
+
+        public Task<Dictionary<Guid, Guid>> GetEmployeeIdToUserIdMapAsync()
+        {
+            var result = _userManager.Users
+                .Where(u => u.EmployeeId.HasValue)
+                .ToDictionary(u => u.EmployeeId!.Value, u => u.Id);
+
+            return Task.FromResult(result);
+        }
     }
 }

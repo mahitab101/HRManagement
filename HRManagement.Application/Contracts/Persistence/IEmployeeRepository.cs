@@ -8,5 +8,6 @@ namespace HRManagement.Application.Contracts.Persistence
     public interface IEmployeeRepository:IBaseRepository<Employee>
     {
         Task<(IReadOnlyList<Employee> Items, int TotalCount)> GetPagedAsync(int pageNumber, int pageSize);
+        Task<Employee?> GetByIdWithDetailsAsync(Guid id);
     }
 }

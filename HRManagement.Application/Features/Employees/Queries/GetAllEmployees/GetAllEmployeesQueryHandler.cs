@@ -30,10 +30,13 @@ public class GetAllEmployeesQueryHandler
         var employeeIdsWithAccounts = await _userRepository.GetEmployeeIdsWithAccountsAsync();
         var accountSet = employeeIdsWithAccounts.ToHashSet();
 
+        var employeeIdToUserIdMap = await _userRepository.GetEmployeeIdToUserIdMapAsync();
+
         var items = employees.Select(e =>
         {
             var vm = e.ToEmployeeListVm();
-            vm.HasAccount = accountSet.Contains(e.Id);
+            vm.HasAccount = employeeIdToUserIdMap.ContainsKey(e.Id);
+            vm.UserId = employeeIdToUserIdMap.TryGetValue(e.Id, out var userId) ? userId : null;
             return vm;
         }).ToList();
 

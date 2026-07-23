@@ -7,5 +7,6 @@ namespace HRManagement.Application.Contracts.Identity
     public interface IUserRepository
     {
         Task<IEnumerable<Guid>> GetEmployeeIdsWithAccountsAsync();
+        Task<Dictionary<Guid, Guid>> GetEmployeeIdToUserIdMapAsync();
     }
 }
