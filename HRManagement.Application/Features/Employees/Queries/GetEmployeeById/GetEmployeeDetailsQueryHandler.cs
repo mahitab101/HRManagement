@@ -18,7 +18,7 @@ namespace HRManagement.Application.Features.Employees.Queries.GetEmployeeById
         }
         public async Task<BaseResponse<EmployeeDetailsVm>> Handle(GetEmployeeDetailsQuery request, CancellationToken cancellationToken)
         {
-            var emplyee = await _employeeRepository.GetByIdAsync(request.Id);
+            var emplyee = await _employeeRepository.GetByIdWithDetailsAsync(request.Id);
             if (emplyee == null) return BaseResponse<EmployeeDetailsVm>.FailureResponse($"Employee with {request.Id} not found");
 
             var response = emplyee.ToEmployeeDetailsVm();

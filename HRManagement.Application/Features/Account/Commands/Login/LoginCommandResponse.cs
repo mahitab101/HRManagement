@@ -9,5 +9,6 @@ namespace HRManagement.Application.Features.Account.Commands.Login
         public string Token { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public Guid? EmployeeId { get; set; }
+        public List<string> Roles { get; set; } = new();
     }
 }

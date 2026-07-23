@@ -11,5 +11,6 @@ namespace HRManagement.Application.Contracts.Identity
         Task<AuthResponseDto?> LoginAsync(LoginDto request);
         Task<bool> AssignRoleAsync(Guid userId, string role);
         Task<bool> RemoveRoleAsync(Guid userId, string role);
+        Task<List<string>> GetUserRolesAsync(Guid userId);
     }
 }

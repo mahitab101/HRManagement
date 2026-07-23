@@ -80,7 +80,8 @@ namespace HRManagement.Infrastructure.Services.Account
             {
                 Token = token,
                 Email = user.Email!,
-                EmployeeId = user.EmployeeId
+                EmployeeId = user.EmployeeId,
+                Roles = roles.ToList()
             };
         }
 
@@ -120,6 +121,15 @@ namespace HRManagement.Infrastructure.Services.Account
             }
 
             return true;
+        }
+        public async Task<List<string>> GetUserRolesAsync(Guid userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+                throw new KeyNotFoundException("User not found.");
+
+            var roles = await _userManager.GetRolesAsync(user);
+            return roles.ToList();
         }
     }
 }

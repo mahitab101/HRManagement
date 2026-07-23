@@ -30,5 +30,14 @@ namespace HRManagement.Persistence.Repositories
 
             return (items, totalCount);
         }
+
+        public async Task<Employee?> GetByIdWithDetailsAsync(Guid id)
+        {
+            return await _dbContext.Employees
+                .Include(e => e.Department)
+                .Include(e => e.Position)
+                .Include(e => e.Branch)
+                .FirstOrDefaultAsync(e => e.Id == id);
+        }
     }
 }

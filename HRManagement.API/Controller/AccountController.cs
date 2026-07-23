@@ -3,6 +3,7 @@ using HRManagement.Application.Features.Account.Commands.CreateEmployeeAccount;
 using HRManagement.Application.Features.Account.Commands.Login;
 using HRManagement.Application.Features.Account.Commands.RemoveRole;
 using HRManagement.Application.Features.Account.Queries.GetCurrentUser;
+using HRManagement.Application.Features.Account.Queries.GetUserRoles;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,7 @@ namespace HRManagement.API.Controllers
                 {
                     HttpOnly = true,
                     Secure = false,
-                    SameSite = SameSiteMode.Strict,
+                    SameSite = SameSiteMode.Lax,
                     Expires = DateTimeOffset.UtcNow.AddHours(1)
                 });
             }
@@ -75,6 +76,16 @@ namespace HRManagement.API.Controllers
         public async Task<IActionResult> GetCurrentUser()
         {
             var result = await _mediator.Send(new GetCurrentUserQuery());
+            return Ok(result);
+        }
+
+
+
+        [HttpGet("user-roles/{userId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserRoles(Guid userId)
+        {
+            var result = await _mediator.Send(new GetUserRolesQuery { UserId = userId });
             return Ok(result);
         }
 
