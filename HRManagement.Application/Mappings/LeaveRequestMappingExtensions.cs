@@ -33,6 +33,7 @@ namespace HRManagement.Application.Mappings.LeaveRequests
                 LeaveTypeName = leaveRequest.LeaveType?.Name,
                 StartDate = leaveRequest.StartDate,
                 EndDate = leaveRequest.EndDate,
+                RequestedDays = leaveRequest.RequestedDays,
                 Status = leaveRequest.Status.ToString(),
                 Notes = leaveRequest.Notes
             };

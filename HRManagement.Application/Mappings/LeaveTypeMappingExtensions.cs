@@ -23,8 +23,10 @@ namespace HRManagement.Application.Mappings.LeaveTypes
             {
                 Id = leaveType.Id,
                 Name = leaveType.Name,
-                MaxDaysPerYear = leaveType.MaxDaysPerYear
-            };
+                MaxDaysPerYear = leaveType.MaxDaysPerYear,
+                AllowCarryOver = leaveType.AllowCarryOver,
+                MaxCarryOverDays= leaveType.MaxCarryOverDays
+                };
         }
 
         public static List<LeaveTypeListVm> ToLeaveTypeListVms(this IEnumerable<LeaveType> leaveTypes)

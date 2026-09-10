@@ -7,5 +7,7 @@ namespace HRManagement.Application.Features.LeaveTypes.Queries.GetAllLeaveTypes
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int MaxDaysPerYear { get; set; }
+        public bool AllowCarryOver { get; set; }
+        public int? MaxCarryOverDays { get; set; }
     }
 }

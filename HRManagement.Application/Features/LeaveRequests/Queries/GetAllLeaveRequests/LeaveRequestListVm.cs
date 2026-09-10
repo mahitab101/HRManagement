@@ -11,6 +11,7 @@ namespace HRManagement.Application.Features.LeaveRequests.Queries.GetAllLeaveReq
         public string? LeaveTypeName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public int RequestedDays { get; set; }
         public string Status { get; set; } = string.Empty;
         public string? Notes { get; set; }
     }

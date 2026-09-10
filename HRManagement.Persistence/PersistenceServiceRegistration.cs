@@ -32,6 +32,9 @@ namespace HRManagement.Persistence
             services.AddScoped<IEmployeeTransferHistoryRepository, EmployeeTransferHistoryRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILeaveBalanceRepository, LeaveBalanceRepository>();
+            services.AddScoped<IPublicHolidayRepository, PublicHolidayRepository>();
+            services.AddScoped<ISystemSettingRepository, SystemSettingRepository>();
             return services;
         }
     }
