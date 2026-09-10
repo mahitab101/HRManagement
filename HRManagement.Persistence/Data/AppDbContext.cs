@@ -31,6 +31,9 @@ namespace HRManagement.Persistence.Data
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
         public DbSet<Payroll> Payrolls { get; set; }
         public DbSet<EmployeeTransferHistory> EmployeeTransferHistories { get; set; }
+        public DbSet<LeaveBalance> LeaveBalances { get; set; }
+        public DbSet<SystemSetting> SystemSettings { get; set; }
+        public DbSet<PublicHoliday> PublicHolidays { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

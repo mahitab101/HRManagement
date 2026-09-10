@@ -8,5 +8,6 @@ namespace HRManagement.Application.Contracts.Persistence
     public interface ILeaveRequestRepository:IBaseRepository<LeaveRequest>
     {
         Task<IReadOnlyList<LeaveRequest>> GetAllWithDetailsAsync();
+        Task<bool> HasOverlappingRequestAsync(Guid employeeId, DateTime startDate, DateTime endDate);
     }
 }

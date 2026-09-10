@@ -9,5 +9,8 @@ namespace HRManagement.Domain.Entities
     {
         public string Name { get; set; }
         public int MaxDaysPerYear { get; set; }
+        public bool AllowCarryOver { get; set; }
+        public int? MaxCarryOverDays { get; set; }
+
     }
 }

@@ -1,5 +1,9 @@
-﻿using HRManagement.Application.Contracts.Identity;
+﻿using HRManagement.Application.Contracts;
+using HRManagement.Application.Contracts.Identity;
+using HRManagement.Application.Contracts.Persistence;
 using HRManagement.Domain.Identity;
+using HRManagement.Infrastructure.BackgroundServices;
+using HRManagement.Infrastructure.Services;
 using HRManagement.Infrastructure.Services.Account;
 using HRManagement.Infrastructure.Services.Token;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +22,10 @@ namespace HRManagement.Infrastructure
             services.AddScoped<IAccountService, AccountService>();
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<ILeaveBalanceService, LeaveBalanceService>();
+            services.AddScoped<ISystemSettingService, SystemSettingService>();
+            services.AddScoped<IWorkingDaysCalculator, WorkingDaysCalculator>();
+            services.AddHostedService<LeaveBalanceRolloverBackgroundService>();
             return services;
         }
     }
